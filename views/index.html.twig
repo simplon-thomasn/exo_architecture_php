@@ -3,19 +3,19 @@
 <head>
     <meta charset="utf-8" />
     <link href="microcms.css" rel="stylesheet" />
-    <title>MicroCMS - Accueil</title>
+    <title>MicroCMS - Page d'accueil</title>
 </head>
 <body>
     <header>
-        <h1>MicroCMS</h1>
+        <h1>MicroCMS by Thomas</h1>
     </header>
-    
-    <?php foreach ($articles as $article): ?>
-      <article>
-        <h2><?php echo $article->getTitle() ?></h2>
-        <p><?php echo $article->getContent() ?></p>
-      </article>
-    <?php endforeach ?>
+
+    {% for article in articles %}
+    <article>
+        <h2>{{ article.title }}</h2>
+        <p>{{ article.content }}</p>
+    </article>
+    {% endfor %}
 
     <footer class="footer">
         <a href="https://github.com/bpesquet/OC-MicroCMS">MicroCMS</a> is a minimalistic CMS built as a showcase for modern PHP development.
