@@ -12,8 +12,15 @@ $app->register(new Silex\Provider\DoctrineServiceProvider());
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => __DIR__.'/../views',
 ));
+$app->register(new Silex\Provider\UrlGeneratorServiceProvider());
+
 
 // Register services.
 $app['dao.article'] = $app->share(function ($app) {
     return new microcms\DAO\ArticleDAO($app['db']);
+});
+$app['dao.comment'] = $app->share(function ($app) {
+    $commentDAO = new microcms\DAO\CommentDAO($app['db']);
+    $commentDAO->setArticleDAO($app['dao.article']);
+    return $commentDAO;
 });
